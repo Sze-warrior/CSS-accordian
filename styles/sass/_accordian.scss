@@ -1,0 +1,68 @@
+@import "variables";
+@import "mixins";
+
+.tab-container{
+
+	.tab-group{
+		margin: 0 auto;
+		max-width: 100%;
+	}
+
+	.tab{
+		position: relative;
+		border: 1px solid $color-blue;
+		width: 99%;
+		margin-bottom: 10px;
+		@include transition();
+		@include border-radius(4px);		
+
+		input{
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -999;
+			opacity: 0;
+			@include transition();
+
+			/*The "~" is a sibling combinator. It is used to
+			  select a sibling of another element inside of 
+			  a parent class or ID on the DOM.*/
+
+			&:checked ~ .tab-content{
+				max-height: $accordian-content-height;
+				@include transition(0.8s);		
+			}
+		}
+
+		label{
+			background-color: $color-blue;
+			color: white;
+			display: block;
+			line-height: 3;
+			padding-left: 20px;
+			@include transition();
+			font-weight: $font-weight-bold;		
+		}
+
+		input:hover,
+		label:hover{
+			background-color: darken($color-blue, 10%);
+			cursor: pointer;	
+			letter-spacing: 0.5px;	
+			@include transition();		
+		}
+
+		.tab-content{
+			padding: 0 15px;
+    		border-top: none;	
+    		max-height: 0;
+    		overflow: hidden;
+			@include transition();		
+		}
+
+		&:hover{
+			border: 1px solid darken($color-blue, 10%);
+			@include transition();			
+		}
+	}
+}
