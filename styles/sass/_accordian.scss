@@ -65,4 +65,12 @@
 			@include transition();			
 		}
 	}
+
+	@media screen and (max-width: $mobile){
+
+		.tab{
+			@include border-radius(0);
+			margin-bottom: 2px;		
+		}
+	}
 }
